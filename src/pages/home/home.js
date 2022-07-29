@@ -51,7 +51,7 @@ const Home = () => {
             <SearchBar />
           </Box>
           {status === 'notFound' && 
-            <Box sx={{ mb: 2 }}>
+            <Box sx={{ my: 2 }}>
               <Typography>Movie Not found !</Typography>
             </Box>
           }

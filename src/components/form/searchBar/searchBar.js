@@ -29,13 +29,14 @@ const SearchBar = () => {
                         value={searchKeyword}
                         label='Search'
                         onInput={ e=>setSearchKeyword(e.target.value)}
+                        size="small"
                     />
                     {isError && <FormHelperText id="component-error-text">Please Input Minimum 3 Letter</FormHelperText>}
                 </FormControl>
                 <Button
                     variant="contained"
                     type="submit"
-                    sx={{ ml: 3}}
+                    sx={{ ml: 3 }}
                 >
                     Find
                 </Button>

@@ -1,13 +1,15 @@
 import * as React from 'react';
-import {Box} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const Loading = (props) => {
-
+const Loading = () => {
     return (
-        <Box sx={{ pt: 3, display: 'flex' , justifyContent: 'center', overflow: 'hidden'}}>
-            <CircularProgress />
-        </Box>
+        <>
+            <Box sx={{ mt: 2, pt: 3, display: 'flex' , flexDirection: 'column', alignItems: 'center', overflow: 'hidden'}}>
+                <CircularProgress />
+                <Typography textAlign="center" sx={{ mt: 2 }}>Please Wait !</Typography>
+            </Box>
+        </>
     )
   }
   

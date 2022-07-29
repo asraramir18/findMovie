@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Typography, Modal} from '@mui/material'; 
+import { Box, Typography, Modal} from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -25,27 +25,35 @@ const Card = (props) => {
         <Box  sx={{ display: 'flex', flexDirection: 'row', m: 3}}>
           <Box
             component="img"
+            id='card_image'
             sx={{
+              backgroundColor: 'grey',
               maxHeight: { xs: 150, md: 300 },
               maxWidth: { xs: 150, md: 300 },
-              // height: { xs: 150, md: 300 },
-              // width: { xs: 150, md: 300 },
+              minHeight: { xs: 100, md: 200 },
+              minWidth: { xs: 100, md: 200 },
               mr: 2,
-              backgroundSize: 'cover' 
+              '&:hover': {
+                cursor: 'pointer',
+                backgroundColor: 'primary.main',
+                opacity: [0.9, 0.8, 0.7],
+              },
             }}
-            alt="poster"
+            alt="Movie Poster"
             src={Poster}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src="/NoImage.png";
+            }}
             onClick={handleOpen}
           />
           <Box>
-              <Typography fontSize='0.9rem'>{Title}</Typography>
-              <Typography fontSize='0.9rem'>Year: {Year}</Typography>
+              <Typography data-testid="cardTitle" fontSize='0.9rem'>{Title}</Typography>
+              <Typography data-testid="cardSubTitle" fontSize='0.9rem'>Year: {Year}</Typography>
           </Box>
           <Modal
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
             <Box

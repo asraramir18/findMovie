@@ -5,7 +5,7 @@ const PageWrapper = ({ children }) => {
     <Box
       component="main"
       sx={{
-        pt: 6,
+        pt: 8,
         display: 'flex',
         backgroundColor: '#F8F8FF',
         flexGrow: 1,
