@@ -47,14 +47,14 @@ const detailSlicer = createSlice({
     builder.addCase(fetchDetailMovie.pending, (state) => {
       console.log('action.pending : ')
         state.info = {}
-        state.isLoading = false
+        state.isLoading = true
         state.isError = false
     })
     builder.addCase(fetchDetailMovie.rejected, (state, action) => {
       console.log('action.rejected : ')
         state.info = {}
         state.isLoading = false
-        state.isError = false
+        state.isError = true
     })
   },
 })

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import {Button, Box, FormControl, FormHelperText, TextField} from '@mui/material'; 
 import { useDispatch } from 'react-redux'
 import { fetchMovie } from '../../../redux/feature/home/homeSlicer'

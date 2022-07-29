@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import {Box, Typography, Modal} from '@mui/material'; 
-import Card from '../../components/card/card'
-import SearchBar from '../../components/form/searchBar/searchBar'
 import { useSelector, useDispatch } from 'react-redux'
-import InfiniteScroll from 'react-infinite-scroll-component';
 import Loading from '../../components/loading/loading'
 import { fetchDetailMovie } from '../../redux/feature/details/detailsSlicer'
 import { useSearchParams,useParams } from 'react-router-dom'
@@ -54,6 +51,8 @@ const Details = (props) => {
             <Typography data-testid="cardTitle" fontSize='0.9rem'>No Movie Details</Typography>
         </Box>
     )
+
+    if(isLoading)return (<Loading />)
     return (
         <Box sx = {{ backgroundColor: 'white', p: 3}}>
             <Link to='/'>
