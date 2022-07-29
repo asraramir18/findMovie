@@ -5,6 +5,7 @@ import App from './App';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import Home from './pages/home/home'
+import Details from './pages/details/details'
 
 import Layout from './components/layouts/Layout';
 import {
@@ -39,9 +40,8 @@ root.render(
         <ThemeProvider theme={THEME}>
           <Layout>
             <Routes>
-              <Route path="/" element={<Home />}>
-                <Route index element={<Home />} />
-              </Route>
+              <Route path="/" element={<Home />} />
+              <Route path="/:imdbID" element={<Details />} />
             </Routes>
           </Layout>
         </ThemeProvider>

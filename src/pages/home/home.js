@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
-import {Box, Typography} from '@mui/material'; 
+import {Box, Typography, Button} from '@mui/material'; 
+import { Link } from "react-router-dom";
 import Card from '../../components/card/card'
 import SearchBar from '../../components/form/searchBar/searchBar'
 import { useSelector, useDispatch } from 'react-redux'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loading from '../../components/loading/loading'
-import { fetchNextPageMovie } from '../../redux/feature/home/homeSlicer'
+import { fetchNextPageMovie, selectMovie } from '../../redux/feature/home/homeSlicer'
 
 const Home = () => {
   const [ showTopButton, setShowTopBtn ] = React.useState(false);
-  const { listOfMovie, isLoading, status, page, keyword } = useSelector(
+  const [ hasMore, setHasMore ] = React.useState(true);
+  const { listOfMovie, isLoading, status, page, keyword, totalResults } = useSelector(
     state => ({
-      error: state.home.error,
       listOfMovie: state.home.listOfMovie,
       isLoading: state.home.isLoading,
       keyword: state.home.keyword,
       page: state.home.page,
       status: state.home.status,
+      totalResults: state.home.totalResults,
     })
   );
   const dispatch = useDispatch()
@@ -32,6 +34,10 @@ const Home = () => {
 }, []);
   
   const fetchMoreData = () => {
+    if (listOfMovie.length >= totalResults) {
+      setHasMore(false)
+      return
+    }
     const keyPage = {
       keyword, 
       page: page + 1}
@@ -60,7 +66,7 @@ const Home = () => {
             <InfiniteScroll
               dataLength={listOfMovie.length}
               next={fetchMoreData}
-              hasMore={status === 'last'}
+              hasMore={hasMore}
               loader={<Loading />}
               endMessage={
                 <Typography textAlign= 'center' fontWeight='bold' sx={{ my: 2 }}>
@@ -69,7 +75,9 @@ const Home = () => {
               }
             >
               {listOfMovie.map((data, index) => (
-                <Card key={index} data={data}/>
+                <Link to={data.imdbID}>
+                  <Card key={index} data={data}/>
+                </Link>
               ))}
             </InfiniteScroll>
           }

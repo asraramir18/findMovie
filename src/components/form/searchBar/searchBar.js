@@ -19,6 +19,19 @@ const SearchBar = () => {
     }
     event.preventDefault()
   }
+
+  const findKeywordByType = async (event) => {
+    const trimmedKeyword = event.target.value.trim()
+    if(!trimmedKeyword || (trimmedKeyword && trimmedKeyword.length < 3)){
+      console.log('is error')
+      setError(true)
+    } else {
+      setError(false)
+      dispatch(fetchMovie(trimmedKeyword))
+    }
+    event.preventDefault()
+  }
+
     return (
         <Box>
             <form onSubmit={findKeyword}>
@@ -29,6 +42,7 @@ const SearchBar = () => {
                         value={searchKeyword}
                         label='Search'
                         onInput={ e=>setSearchKeyword(e.target.value)}
+                        onChange={ e=>findKeywordByType(e)}
                         size="small"
                     />
                     {isError && <FormHelperText id="component-error-text">Please Input Minimum 3 Letter</FormHelperText>}

@@ -9,13 +9,11 @@ const PageWrapper = ({ children }) => {
         display: 'flex',
         backgroundColor: '#F8F8FF',
         flexGrow: 1,
-        height: '100%',
+        height: '100vh',
         justifyContent: 'center',
       }}
     >
-        <Grid item xs={12}>
           {children}
-        </Grid>
     </Box>
   );
 };
